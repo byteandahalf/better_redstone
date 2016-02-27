@@ -6,6 +6,7 @@
 #include "minecraftpe/client/renderer/texture/TextureUVCoordinateSet.h"
 #include "minecraftpe/client/renderer/renderer/Color.h"
 #include "minecraftpe/world/phys/AABB.h"
+#include "minecraftpe/CommonTypes.h"
 
 struct Material;
 class BlockEntity;
@@ -56,7 +57,7 @@ public:
 	Block(const std::string&, int, const std::string&, const Material&);
 
 	/* fields */
-	uint8_t blockId; // 4
+	BlockID blockId; // 4
 	unsigned int textureIsotropic; // 8
 	std::string nameId; // 12
 	TextureUVCoordinateSet texture; // 16

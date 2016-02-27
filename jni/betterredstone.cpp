@@ -5,12 +5,13 @@
 #include <substrate.h>
 #include <memory>
 
+#include "offsets.h"
 #include "virtualhook.h"
 
 #include "minecraftpe/world/level/block/Block.h"
 
-#define BLOCK_VTABLE_IS_REDSTONE_PROVIDER 18
-#define BLOCK_VTABLE_ON_REDSTONE_UPDATE 32
+#include "redstonehooks/RedStoneWireBlock.h"
+
 
 static int redstone_stuff[32] = 
 {
@@ -72,6 +73,8 @@ static void initBlockVtables()
 		uintptr_t** block_vtable = VirtualHook::GetVtable((void*) Block::mBlocks[block_id]);
 		block_vtable[BLOCK_VTABLE_ON_REDSTONE_UPDATE] = (uintptr_t*) &disableRedstoneUpdates;
 	}
+
+	RedStoneWireBlock::initVtable(Block::mRedStoneDust);
 }
 
 
